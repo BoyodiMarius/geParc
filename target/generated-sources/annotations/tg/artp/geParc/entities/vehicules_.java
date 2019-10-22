@@ -10,7 +10,7 @@ import tg.artp.geParc.entities.chargerCarburant;
 import tg.artp.geParc.entities.fiche;
 import tg.artp.geParc.entities.modele;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-06-19T23:18:06")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-10-22T22:15:39")
 @StaticMetamodel(vehicules.class)
 public class vehicules_ { 
 

@@ -8,7 +8,7 @@ import tg.artp.geParc.entities.marques;
 import tg.artp.geParc.entities.typeCarburant;
 import tg.artp.geParc.entities.typeVehicules;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-06-19T23:18:06")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-10-22T22:15:39")
 @StaticMetamodel(modele.class)
 public class modele_ { 
 

@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import tg.artp.geParc.entities.Menu;
 import tg.artp.geParc.entities.Utilisateur;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-06-19T23:18:06")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-10-22T22:15:39")
 @StaticMetamodel(UtilisateurMenu.class)
 public class UtilisateurMenu_ { 
 

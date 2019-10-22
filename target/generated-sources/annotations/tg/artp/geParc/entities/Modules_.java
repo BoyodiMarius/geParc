@@ -9,7 +9,7 @@ import tg.artp.geParc.entities.ModuleMenu;
 import tg.artp.geParc.entities.UtilisateurModulePoids;
 import tg.artp.geParc.entities.UtilisateurModuleProfil;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-06-19T23:18:06")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-10-22T22:15:39")
 @StaticMetamodel(Modules.class)
 public class Modules_ { 
 
