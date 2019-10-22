@@ -1,0 +1,185 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:of="http://omnifaces.org/functions"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:ax="http://www.dorkenooconsulting.com/composant">
+
+    <h:form id="formGeneral">
+        <div class="ftitle">Création et Mise-à-jour des utilisateurs</div>
+        <p:panel style="margin-top: 5px">
+            <p:fieldset id="infoRtn" styleClass="infoSet" style="border: none">
+                <table width="100%" align="center" border="0">
+                    <tr>
+                        <td width="20%">
+                            <p:outputLabel value="Nom" for="code" style="margin-left: 5px"/><br/>
+                        </td>
+                        <td>
+                            <p:inputText autocomplete="off" id="code"  required="true" value="#{utilisateurManagedBean.formObject.nom}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" >
+                            <p:outputLabel value="Login" for="login" style="margin-left: 5px"/><br/>
+                        </td>
+                        <td>
+                            <p:inputText id="login" autocomplete="off" required="true"
+                                         value="#{utilisateurManagedBean.formObject.login}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <p:outputLabel value="Mot de passe" for="mop" style="margin-left: 5px"/><br/>
+                        </td>
+
+                        <td>
+                            <p:password id="mop"  value="#{utilisateurManagedBean.formObject.password}"
+                                        feedback="true" required="true">
+                                <!--<p:ajax event="change" process="@this"/>-->
+                            </p:password>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <p:outputLabel value="Confirmation " for="mdpc" style="margin-left: 5px"/>
+                        </td>
+                        <td>
+                            <p:password value="#{utilisateurManagedBean.confirmationPassword}"  id="mdpc" required="true" 
+                                        requiredMessage="Confirmer le mot de passe"
+                                        feedback="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" >
+                            <p:outputLabel value="Type d'utilisateur"/><br/>
+                        </td>
+                        <td>
+                            <p:selectOneMenu value="#{utilisateurManagedBean.formObject.typeUtilisateur}">
+                                <f:selectItem itemLabel="SIMPLE UTILISATEUR" itemValue="UTILISATEUR"/>
+                                <f:selectItem itemLabel="ADMIN" itemValue="ADMIN"/>
+                            </p:selectOneMenu>
+
+                        </td>
+                    </tr>
+
+                </table>
+            </p:fieldset>
+            <br/>
+            <div class="boutondiv" style="width: 48%;padding: 2px 0px;">
+                <p:commandButton ajax="true" actionListener="#{utilisateurManagedBean.confirmerEnregistrer}" styleClass="BlueButton" value="Enregistrer" icon="ui-icon-disk"/>
+                <p:commandButton process="@this" styleClass="OrangeButton" value="Effacer" actionListener="#{utilisateurManagedBean.effacer}" update="@form"  icon="ui-icon-cancel"/>
+            </div><br/>
+            <p:dataTable var="item" paginator="true" styleClass="tabList" paginatorPosition="top" rows="10" 
+                         value="#{utilisateurManagedBean.dataList}" id="tbl"
+                         selectionMode="single" style="margin-bottom:0"
+                         selection="#{utilisateurManagedBean.selectedObject}"
+                         rowKey="#{item.idUser}"
+                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                         emptyMessage="Aucune donnée dans la liste pour le moment" >
+                <p:ajax event="rowSelect" update="@form" listener="#{utilisateurManagedBean.rowSelect()}"/>
+                <f:facet name="{Exporters}">
+                    <h:commandLink >
+                        <p:graphicImage library="img" name="excel.png" width="24"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="list" />
+                    </h:commandLink>
+
+                    <h:commandLink >
+                        <p:graphicImage  library="img" name="pdf.png" width="24"/>
+                        <p:dataExporter preProcessor="@this" type="pdf" target="tbl" fileName="list"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="img" name="csv.png" width="24"/>
+                        <p:dataExporter type="csv" target="tbl" fileName="list" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="img" name="xml.png" width="24"/>
+                        <p:dataExporter type="xml" target="tbl" fileName="list" />
+                    </h:commandLink>
+                </f:facet>
+
+                <p:column filterBy="#{item.nom}" sortBy="#{item.nom}" width="50" headerText="Nom" >
+                    <h:outputText value="#{item.nom}"/>
+                </p:column>
+
+                <p:column filterBy="#{item.login}" sortBy="#{item.login}" width="100" headerText="Login">
+                    <h:outputText value="#{item.login}"/>
+                </p:column>
+
+
+
+                <p:column filterBy="#{item.typeUtilisateur}" sortBy="#{item.typeUtilisateur}" width="100" headerText="Type Utilisateur">
+                    <h:outputText value="#{item.typeUtilisateur}"/>
+                </p:column>
+
+
+                <f:facet name="footer">
+                    <p:commandButton process="@this" icon="ui-icon-refresh" value="Rafraîchir" title="Rafraîchir la liste" 
+                                     action="#{utilisateurManagedBean.rafraichir()}" update="@form"/>
+                </f:facet>
+            </p:dataTable>
+            <br/>
+
+            <ax:succesDialog widgetVar="succesOperation" title="Succes" 
+                             msg1="Opérations effectuées avec succès">
+                <div style="margin-top: 10px; text-align: center">
+                    <p:commandButton process="@none" value="OK" style="width: 100px"
+                                     onclick="PF('succesOperation').hide()"/>
+                </div>
+            </ax:succesDialog>
+
+            <p:outputPanel id="error" styleClass="errorClasse">
+                <ax:errorDialog widgetVar="echecOperation" title="Echec" msg1="#{utilisateurManagedBean.message}">
+                    <div style="margin-top: 10px; text-align: center">
+                        <p:commandButton process="@none"  value="Ok" style="width: 100px"
+                                         onclick="PF('echecOperation').hide()"/>
+                    </div>
+                </ax:errorDialog>
+            </p:outputPanel>
+
+
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer la suppression?"
+                              widgetVar="confirmSuppression" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" onclick="PF('confirmSuppression').hide();" style="size: 90px;"
+                                     action="#{utilisateurManagedBean.supprimer()}"  update="@form"/>
+                    <p:commandButton value="Non" onclick="PF('confirmSuppression').hide();"
+                                     style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer l'enregistrement?" widgetVar="confirmEnregistre" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@form" actionListener="#{utilisateurManagedBean.enregistrer()}"
+                                     onclick="PF('confirmEnregistre').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" onclick="PF('confirmEnregistre').hide();" style="margin-left: 5px;size: 90px;"/>
+
+                </div>
+            </ax:confirmDialog>
+            <ax:warringDialog widgetVar="warningOperation" title="Avertissement" msg1="#{utilisateurManagedBean.message}">
+                <div style="margin-top: 10px; text-align: center">
+                    <p:commandButton process="@none" value="OK" style="width: 100px"
+                                     onclick="PF('warningOperation').hide()"/>
+                </div>
+            </ax:warringDialog>
+        </p:panel>
+
+        <style type="text/css">
+            .ui-datatable-header{
+                text-align: center !important;
+                padding: 4px 10px;
+            }
+
+            .ui-datatable-footer{
+                text-align: right !important;
+                padding: 4px 10px;
+            }
+        </style>
+
+    </h:form>
+</ui:composition>

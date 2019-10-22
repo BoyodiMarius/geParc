@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ax="http://www.artp.tg/composant"
+      class="no-js" lang="">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Garages</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>  
+        <h:outputStylesheet name="./assets/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="./assets/css/plugins.css"/>
+        <h:outputStylesheet name="./assets/css/lato-webfont.css"/>
+        <h:outputStylesheet name="./assets/css/magnific-popup.css"/>
+        <!--Theme custom css -->
+        <h:outputStylesheet name="./assets/css/style.css"/>
+        <!--Theme Responsive css-->
+        <h:outputStylesheet name="./assets/css/responsive.css"/>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+
+        <script src="./assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </h:head>
+
+    <h:body>
+        <h:form id="typeMission" styleClass="typeMission">
+            <!-- EN TETE -->
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#"><img src="resources/assets/images/logoGesparc.png" alt="" /></a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right" id="nav">
+                            <li><a href="Menu.xhtml">Home</a></li>
+                            <li><a href="Statistiques.xhtml">Statistiques</a></li>
+                            <li><a href="Alertes.xhtml"> &nbsp; Alertes</a></li>
+                            <li class="active"><a href="parametres.xhtml"> Administration</a></li>
+                            <li>  </li>
+                            <li> </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+            <!-- CORPS -->
+            <p:layout fullPage="true" styleClass="nav navbar-nav navbar-right" >
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175"  >
+
+                    <p:growl autoUpdate="false" />
+                    <p:panelMenu style="width:300px">
+                        <p:submenu label="Véhicule" >
+                            <p:menuitem value="Modèle" url="Modele.xhtml" icon="ui-icon-circle-plus" />
+                            <p:menuitem value="Véhicule" url="Vehicules.xhtml" icon="ui-icon-star" />  
+                        </p:submenu>
+                        <p:submenu label="Opération ">
+                            <p:menuitem value="Affectation" url="Affectation.xhtml" icon="ui-icon-circle-plus" />
+                            <p:menuitem value="Fiche" url="Fiche.xhtml" icon="ui-icon-document" />
+                            <p:menuitem value="Charger carburant" url="ChargerCarburant.xhtml" icon="ui-icon-star" />
+                            <p:menuitem value="Garage" url="Garage.xhtml" icon="ui-icon-wrench" />
+                            <p:menuitem value="Réparation" url="Reparation.xhtml" icon="ui-icon-wrench" />
+                        </p:submenu>
+                        <p:submenu label="Gestion Global">
+                            <p:menuitem value="Paramètres" url="ParametresGenerale.xhtml" icon="ui-icon-gear" />
+                            <p:menuitem value="Missions" url="Mission.xhtml" icon="ui-icon-document" />
+                            <p:menuitem value="Chauffeur" url="Chauffeur.xhtml" icon="ui-icon-person" />
+                            <p:menuitem value="Utilisateur" url="Utilisateur.xhtml" icon="ui-icon-person" />
+                        </p:submenu>
+                    </p:panelMenu>
+
+                </p:layoutUnit>
+
+
+                <p:layoutUnit position="center">
+                    <center>
+                        <p:fieldset legend="GARAGE" styleClass="fieldGarage">
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                            <h:panelGrid id="gridGarage" columns="3" cellspacing="10" cellpadding="10">
+                                <p:outputLabel for="libelleGarage" value="Désignation :"/>
+                                <p:inputText id="libelleGarage" style="background: #ffffff" styleClass="libelleGarage" value="#{garageMBean.libelleGarage}" required="true" />
+                                <p:message for="libelleGarage" display="icon"/>
+                                <p:outputLabel value=""/>
+                                <p:outputLabel value=""/>
+                                <p:outputLabel value=""/>
+                                <p:outputLabel for="contactGarage" value="Contact :"/>
+                                <p:inputText id="contactGarage" style="background: #ffffff" styleClass="contactGarage" value="#{garageMBean.contactGarage}" required="true" />
+                                <p:message for="contactGarage" display="icon"/>
+                                <p:outputLabel value=""/>
+                                <p:outputLabel value=""/>
+                                <p:outputLabel value=""/>
+                                <p:outputLabel for="emailGarage" value="Email :"/>
+                                <p:inputText id="emailGarage" style="background: #ffffff" styleClass="garage" value="#{garageMBean.emailGarage}"  />
+                                <p:message for="emailGarage" display="icon"/>
+
+                            </h:panelGrid>
+                            <br/>
+                            <br/>
+                            <h:panelGrid columns="6">
+                                <p:commandButton  style="margin-right: 8px; background: #4bcaff; color: white" action="#{garageMBean.confirmerEnregistrement()}" value="Valider" icon="ui-icon-disk" class="btn btn-primary btn-lg"/>
+                                <br/><br/>
+                                <p:commandButton  style="margin-right: 8px; background: #999; color: white"  update="@(.fieldGarage, .classGarage)" actionListener="#{garageMBean.rafraichir()}"  value="Annuler" icon="ui-icon-cancel" class="btn btn-primary btn-lg"/>
+                                <br/><br/>
+                                <p:commandButton disabled="#{garageMBean.desactiver}" style="margin-right: 8px; background: #843534; color: white" action="#{garageMBean.confirmerSuppression()}" value="Supprimer" icon="ui-icon-trash" class="btn btn-primary btn-lg"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <br/>
+                        <br/>
+
+                        <p:dataTable var="f" value="#{garageMBean.listeGarage}" 
+                                     selection="#{garageMBean.selectObject}" rowKey="#{f.idGarage}"
+                                     emptyMessage="Aucun Garage" selectionMode="single"
+                                     rows="3" scrollable="true"  paginator="true" paginatorPosition="top" 
+                                     styleClass="classGarage">
+                            <p:ajax event="rowDblselect" update="@(.fieldGarage)" listener="#{garageMBean.rowSelect()}" />
+                            <f:facet name="header">
+                                <h:outputText value="LISTE DES GARAGES"/>
+                            </f:facet>
+                            <p:column filterBy="#{f.libelleGarage}" sortBy="#{f.libelleGarage}">
+                                <f:facet name="header"> <h:outputText value=" Désignation "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.libelleGarage}"   ></h:outputText>
+                                </center>
+                            </p:column>
+                            <p:column >
+                                <f:facet name="header"> <h:outputText value=" Contact "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.contactGarage}"  ></h:outputText>
+                                </center>
+                            </p:column>
+                            <p:column >
+                                <f:facet name="header"> <h:outputText value=" Email "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.emailGarage}"  ></h:outputText>
+                                </center>
+                            </p:column>
+                        </p:dataTable>
+                    </center>
+                </p:layoutUnit>
+            </p:layout>
+
+            <ax:succesDialog widgetVar="succesOperationGarage" title="Succes"
+                             msg1="#{garageMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                    <p:commandButton process="@none"  value="OK" style="width: 100px"
+                                     onclick="PF('succesOperationGarage').hide()"  />
+                </div>
+            </ax:succesDialog>
+
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer l'enregistrement?" widgetVar="confirmerEnregistrementGarage" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldGarage, .classGarage)" actionListener="#{garageMBean.enregistrer()}" 
+                                     onclick="PF('confirmerEnregistrementGarage').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" update="@(.fieldGarage, .classGarage)" actionListener="#{garageMBean.rafraichir()}"  onclick="PF('confirmerEnregistrementGarage').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer la suppression?" widgetVar="confirmerSuppressionGarage" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldGarage, .classGarage)" actionListener="#{garageMBean.supprimer()}" 
+                                     onclick="PF('confirmerSuppressionGarage').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" update="@(.fieldGarage, .classGarage)" actionListener="#{garageMBean.rafraichir()}" onclick="PF('confirmerSuppressionGarage').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:errorDialog widgetVar="errorOperationGarage" title="ERREUR" 
+                            msg1="#{garageMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                    <p:commandButton process="@none" value="OK" style="width: 100px"
+                                     onclick="PF('errorOperationGarage').hide()"  />
+                </div>
+            </ax:errorDialog>
+
+        </h:form>
+
+    </h:body>
+</html>

@@ -1,0 +1,449 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ax="http://www.artp.tg/composant"
+      class="no-js" lang="">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Parametres General</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>  
+        <h:outputStylesheet name="./assets/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="./assets/css/plugins.css"/>
+        <h:outputStylesheet name="./assets/css/lato-webfont.css"/>
+        <h:outputStylesheet name="./assets/css/magnific-popup.css"/>
+        <!--Theme custom css -->
+        <h:outputStylesheet name="./assets/css/style.css"/>
+        <!--Theme Responsive css-->
+        <h:outputStylesheet name="./assets/css/responsive.css"/>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        
+        <script src="./assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </h:head>
+
+    <h:body>
+        <h:form  styleClass="parametreGeneral">
+            <!-- EN TETE -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#"><img src="resources/assets/images/logoGesparc.png" alt="" /></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right" id="nav">
+                        <li><a href="Menu.xhtml">Home</a></li>
+                        <li><a href="Statistiques.xhtml">Statistiques</a></li>
+                        <li><a href="Alertes.xhtml"> &nbsp; Alertes</a></li>
+                        <li class="active"><a href="parametres.xhtml"> Administration</a></li>
+                        <li>   </li>
+                        <li> <p:commandButton  value="Déconnexion" action="#{logoutMBean.deconnexion()}"  ajax="false" /> </li>
+                        
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+            <!-- CORPS -->
+            <p:layout fullPage="true" styleClass="nav navbar-nav navbar-right" >
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175"  >
+                    
+                    <p:growl autoUpdate="false" />
+                    <p:panelMenu style="width:300px">
+                        <p:submenu label="Véhicule" >
+                            <p:menuitem value="Modèle" url="Modele.xhtml" icon="ui-icon-circle-plus" />
+                            <p:menuitem value="Véhicule" url="Vehicules.xhtml" icon="ui-icon-star" />  
+                        </p:submenu>
+                        <p:submenu label="Opération ">
+                            <p:menuitem value="Affectation" url="Affectation.xhtml" icon="ui-icon-circle-plus" />
+                            <p:menuitem value="Fiche" url="Fiche.xhtml" icon="ui-icon-document" />
+                            <p:menuitem value="Charger carburant" url="ChargerCarburant.xhtml" icon="ui-icon-star" />
+                            <p:menuitem value="Garage" url="Garage.xhtml" icon="ui-icon-wrench" />
+                            <p:menuitem value="Réparation" url="Reparation.xhtml" icon="ui-icon-wrench" />
+                        </p:submenu>
+                        <p:submenu label="Gestion Global">
+                            <p:menuitem value="Paramètres" url="ParametresGenerale.xhtml" icon="ui-icon-gear" />
+                            <p:menuitem value="Missions" url="Mission.xhtml" icon="ui-icon-document" />
+                            <p:menuitem value="Chauffeur" url="Chauffeur.xhtml" icon="ui-icon-person" />
+                            <p:menuitem value="Utilisateur" url="Utilisateur.xhtml" icon="ui-icon-person" />
+                        </p:submenu>
+                    </p:panelMenu>
+                    
+                </p:layoutUnit>
+                
+                
+                <p:layoutUnit position="center">
+                    <p:tabView>
+                        <p:tab title="Type Vehicule">
+                            <center>
+                        <p:fieldset legend="TYPE VEHICULE" styleClass="fieldenreg">
+                            <p:messages id="messagesTypeVehicule" showDetail="true" autoUpdate="true" closable="true" />
+                            <h:panelGrid columns="3" cellpadding="5">
+                                <p:outputLabel for="type_vehicule" value="Type de véhicule :"/>
+                                <p:inputText id="type_vehicule" style="background: #ffffff" styleClass="type_vehicule" value="#{typeVehiculeMBean.libelleTypeVehicule}" />
+                                <p:message for="type_vehicule" display="text"/>
+                            </h:panelGrid>
+                            <br/>
+                            <br/>
+                            <h:panelGrid columns="5">
+                                <p:commandButton style="margin-right: 8px; background: #4bcaff; color: white" process="@this @(.fieldenreg)" action="#{typeVehiculeMBean.confirmerEnregistrement()}" value="Valider" icon="ui-icon-disk" class="btn btn-primary btn-lg"/>
+                                <br/><br/>
+                                <p:commandButton  style="margin-right: 8px; background: #999; color: white"  update="@(.fieldenreg, .classTypeVeh)" actionListener="#{typeVehiculeMBean.rafraichir()}"  value="Annuler" icon="ui-icon-cancel" class="btn btn-primary btn-lg"/>
+                                <br/><br/>
+                                <p:commandButton disabled="#{typeVehiculeMBean.desactiver}" style="margin-right: 8px; background: #843534; color: white" action="#{typeVehiculeMBean.confirmerSuppression()}" value="Supprimer" icon="ui-icon-trash" class="btn btn-primary btn-lg"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <br/>
+                        <br/>
+                        <p:dataTable var="f" value="#{typeVehiculeMBean.listeTypeVehicule}" 
+                                     selection="#{typeVehiculeMBean.selectObject}" rowKey="#{f.idTypeVehicule}"
+                                     emptyMessage="Aucun type de véhicule" selectionMode="single"
+                                     rows="3" scrollable="true"  paginator="true" paginatorPosition="top" 
+                                     styleClass="classTypeVeh" >
+                            <p:ajax event="rowDblselect" update="@(.fieldenreg)" listener="#{typeVehiculeMBean.rowSelect()}" />
+                            <f:facet name="header">
+                                <h:outputText value="LISTE DES TYPES DE VEHICULES"/>
+                            </f:facet>
+                            <p:column filterBy="#{f.libelleTypeVehicule}" sortBy="#{f.libelleTypeVehicule}" >
+                                <f:facet name="header"> <h:outputText value=" Type Vehicule "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.libelleTypeVehicule}" style="font-size: 30px " ></h:outputText>
+                                </center>
+                            </p:column>
+                        </p:dataTable>
+                            </center>                           
+                        </p:tab>
+                        
+                        <p:tab title="Type Mission">
+                            <center>
+                        <p:fieldset legend="TYPE MISSION" styleClass="fieldTypeMission">
+                            <p:messages id="messagesTypeMission" showDetail="true" autoUpdate="true" closable="true" />
+                            <h:panelGrid id="gridTypeMission" columns="3" cellpadding="5" styleClass="gblingblin">
+                                <p:outputLabel for="type_Mission" value="Type de mission :"/>
+                                <p:inputText id="type_Mission" style="background: #ffffff" label="TypeMission" styleClass="type_Mission" value="#{typeMissionMBean.libelleTypeMission}" />                             
+                                <p:message for="type_Mission" display="icon"/>
+                            </h:panelGrid>
+                            <br/>
+                            <br/>
+                            <h:panelGrid columns="5">
+                                <p:commandButton style="margin-right: 8px; background: #4bcaff; color: white"  process="@this @(.fieldTypeMission)" action="#{typeMissionMBean.confirmerEnregistrement()}" value="Valider" icon="ui-icon-disk" class="btn btn-primary btn-lg" />
+                                <br/><br/>
+                                <p:commandButton  style="margin-right: 8px; background: #999; color: white"  update="@(.fieldTypeMission, .classTypeTypeMission)" actionListener="#{typeMissionMBean.rafraichir()}"  value="Annuler" icon="ui-icon-cancel" class="btn btn-primary btn-lg"/>
+                                <br/><br/>
+                                <p:commandButton disabled="#{typeMissionMBean.desactiver}"  style="margin-right: 8px; background: #843534; color: white" action="#{typeMissionMBean.confirmerSuppression()}" value="Supprimer" icon="ui-icon-trash" class="btn btn-primary btn-lg"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <br/>
+                        <br/>
+                        <p:dataTable var="f" value="#{typeMissionMBean.listeTypeMission}" 
+                                     selection="#{typeMissionMBean.selectObject}" rowKey="#{f.idTypeMission}"
+                                     emptyMessage="Aucun type de Mission" selectionMode="single"
+                                     rows="3" scrollable="true"  paginator="true" paginatorPosition="top" 
+                                     styleClass="classTypeMission" >
+                            <p:ajax event="rowDblselect" update="@(.fieldTypeMission)" listener="#{typeMissionMBean.rowSelect()}" />
+                            <f:facet name="header">
+                                <h:outputText value="LISTE DES TYPES DE MISSION"/>
+                            </f:facet>
+                            <p:column filterBy="#{f.libelleTypeMission}" sortBy="#{f.libelleTypeMission}" >
+                                <f:facet name="header"> <h:outputText value=" Type de Mission "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.libelleTypeMission}" style="font-size: 30px " ></h:outputText>
+                                </center>
+                            </p:column>
+                        </p:dataTable>
+                            </center>
+                        </p:tab>
+                        
+                        <p:tab title="Type Fiche">
+                          <center>
+                        <p:fieldset legend="TYPE FICHE" styleClass="fieldTypeFiche">
+                            <p:messages id="messagesTypeFiche" showDetail="true" autoUpdate="true" closable="true" />
+                            <h:panelGrid id="gridTypeFiche" columns="3" cellpadding="5" styleClass="gblingblin">
+                                <p:outputLabel for="type_Fiche" value="Type de fiche :"/>
+                                <p:inputText id="type_Fiche" style="background: #ffffff" label="TypeFiche" styleClass="type_Fiche" value="#{typeFicheMBean.libelleTypeFiche}" />                             
+                                <p:message for="type_Fiche" display="icon"/>
+                            </h:panelGrid>
+                            <br/>
+                            <br/>
+                            <h:panelGrid columns="6">
+                                <p:commandButton style="margin-right: 8px; background: #4bcaff; color: white"  process="@this @(.fieldTypeFiche)" action="#{typeFicheMBean.confirmerEnregistrement()}" value="Valider" icon="ui-icon-disk" class="btn btn-primary btn-lg" />
+                                <br/><br/>
+                                <p:commandButton  style="margin-right: 8px; background: #999; color: white"  update="@(.fieldTypeFiche, .classTypeFiche)" actionListener="#{typeFicheMBean.rafraichir()}"  value="Annuler" icon="ui-icon-cancel" class="btn btn-primary btn-lg"/>
+                                <br/><br/>
+                                <p:commandButton disabled="#{typeFicheMBean.desactiver}" style="margin-right: 8px; background: #843534; color: white" action="#{typeFicheMBean.confirmerSuppression()}" value="Supprimer" icon="ui-icon-trash" class="btn btn-primary btn-lg"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <br/>
+                        <br/>
+                        <p:dataTable var="f" value="#{typeFicheMBean.listeTypeFiche}" 
+                                     selection="#{typeFicheMBean.selectObject}" rowKey="#{f.idTypeFiche}"
+                                     emptyMessage="Aucun type de Fiche" selectionMode="single"
+                                     rows="3" scrollable="true"  paginator="true" paginatorPosition="top" 
+                                     styleClass="classTypeFiche" >
+                            <p:ajax event="rowDblselect" update="@(.fieldTypeFiche)" listener="#{typeFicheMBean.rowSelect()}" />
+                            <f:facet name="header">
+                                <h:outputText value="LISTE DES TYPES DE Fiche"/>
+                            </f:facet>
+                            <p:column filterBy="#{f.libelleTypeFiche}" sortBy="#{f.libelleTypeFiche}" >
+                                <f:facet name="header"> <h:outputText value=" Type de Fiche "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.libelleTypeFiche}" style="font-size: 30px " ></h:outputText>
+                                </center>
+                            </p:column>
+                        </p:dataTable>
+                         </center>
+                        </p:tab>
+                        
+                        <p:tab title="Marque">
+                            <center>
+                        <p:fieldset legend="MARQUE" styleClass="fieldmarque">
+                            <p:messages id="messagesMarque" showDetail="true" autoUpdate="true" closable="true" />
+                            <h:panelGrid id="gridMarque" columns="3" cellspacing="5">
+                                <p:outputLabel for="marque" value="Marque :"/>
+                                <p:inputText id="marque" style="background: #ffffff" styleClass="marque" value="#{marqueMBean.libelleMarque}"  />
+                                <p:message for="marque" display="icon"/>
+                            </h:panelGrid>
+                            <br/>
+                            <br/>
+                            <h:panelGrid columns="6">
+                                <p:commandButton style="margin-right: 8px; background: #4bcaff; color: white" action="#{marqueMBean.confirmerEnregistrement()}" value="Valider" icon="ui-icon-disk" class="btn btn-primary btn-lg"/>
+                                <br/><br/>
+                                <p:commandButton  style="margin-right: 8px; background: #999; color: white"  update="@(.fieldmarque, .classMarque)" actionListener="#{marqueMBean.rafraichir()}"  value="Annuler" icon="ui-icon-cancel" class="btn btn-primary btn-lg"/>
+                                <br/><br/>
+                                <p:commandButton disabled="#{marqueMBean.desactiver}" style="margin-right: 8px; background: #843534; color: white" action="#{marqueMBean.confirmerSuppression()}" value="Supprimer" icon="ui-icon-trash" class="btn btn-primary btn-lg"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <br/>
+                        <br/>
+                        <p:dataTable var="f" value="#{marqueMBean.listeMarques}" 
+                                     selection="#{marqueMBean.selectObject}" rowKey="#{f.idMarque}"
+                                     emptyMessage="Aucune Marque" selectionMode="single"
+                                     rows="3" scrollable="true"  paginator="true" paginatorPosition="top" 
+                                     styleClass="classMarque">
+                            <p:ajax event="rowDblselect" update="@(.fieldmarque)" listener="#{marqueMBean.rowSelect()}" />
+                            <f:facet name="header">
+                                <h:outputText value="LISTE DES MARQUES"/>
+                            </f:facet>
+                            <p:column filterBy="#{f.libelleMarque}" sortBy="#{f.libelleMarque}" >
+                                <f:facet name="header"> <h:outputText value=" Marque "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.libelleMarque}" style="font-size: 30px " ></h:outputText>
+                                </center>
+                            </p:column>
+                        </p:dataTable>   
+                         </center>
+                        </p:tab>
+                        
+                        <p:tab title="Panne">
+                            <center>
+                        <p:fieldset legend="PANNE" styleClass="fieldPanne">
+                            <p:messages id="messagesPanne" showDetail="true" autoUpdate="true" closable="true" />
+                            <h:panelGrid id="gridPanne" columns="3" cellspacing="5">
+                                <p:outputLabel for="panne" value="Panne :"/>
+                                <p:inputText id="panne" style="background: #ffffff" styleClass="panne" value="#{pannesMBean.libellePanne}" />
+                                <p:message for="panne" display="icon"/>
+                            </h:panelGrid>
+                            <br/>
+                            <br/>
+                            <h:panelGrid columns="6">
+                                <p:commandButton style="margin-right: 8px; background: #4bcaff; color: white" action="#{pannesMBean.confirmerEnregistrement()}" value="Valider" icon="ui-icon-disk" class="btn btn-primary btn-lg"/>
+                                <br/><br/>
+                                <p:commandButton  style="margin-right: 8px; background: #999; color: white"  update="@(.fieldPanne, .classPanne)" actionListener="#{pannesMBean.rafraichir()}"  value="Annuler" icon="ui-icon-cancel" class="btn btn-primary btn-lg"/>
+                                <br/><br/>
+                                <p:commandButton disabled="#{pannesMBean.desactiver}" style="margin-right: 8px; background: #843534; color: white" action="#{pannesMBean.confirmerSuppression()}" value="Supprimer" icon="ui-icon-trash" class="btn btn-primary btn-lg"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <br/>
+                        <br/>
+                        <p:dataTable var="f" value="#{pannesMBean.listePannes}" 
+                                     selection="#{pannesMBean.selectObject}" rowKey="#{f.idPanne}"
+                                     emptyMessage="Aucune Panne" selectionMode="single"
+                                     rows="3" scrollable="true"  paginator="true" paginatorPosition="top" 
+                                     styleClass="classPanne">
+                            <p:ajax event="rowDblselect" update="@(.fieldPanne)" listener="#{pannesMBean.rowSelect()}" />
+                            <f:facet name="header">
+                                <h:outputText value="LISTE DES PANNES"/>
+                            </f:facet>
+                            <p:column filterBy="#{f.libellePanne}" sortBy="#{f.libellePanne}" >
+                                <f:facet name="header"> <h:outputText value=" Panne "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.libellePanne}" style="font-size: 30px " ></h:outputText>
+                                </center>
+                            </p:column>
+                        </p:dataTable>
+                            </center>
+                        </p:tab>
+                    </p:tabView>
+                </p:layoutUnit>
+                       
+            </p:layout>
+            
+         <!--boite marque-->
+         <ax:succesDialog widgetVar="succesOperationMarque" title="Succes"
+                             msg1="#{marqueMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                    <p:commandButton process="@none"  value="OK" style="width: 100px"
+                                 onclick="PF('succesOperationMarque').hide()"  />
+                </div>
+            </ax:succesDialog>
+            
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer l'enregistrement?" widgetVar="confirmerEnregistrementMarque" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldmarque, .classMarque)" actionListener="#{marqueMBean.enregistrer()}" 
+                                 onclick="PF('confirmerEnregistrementMarque').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" onclick="PF('confirmerEnregistrementMarque').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer la suppression?" widgetVar="confirmerSuppressionMarque" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldmarque, .classMarque)" actionListener="#{marqueMBean.supprimer()}" 
+                                 onclick="PF('confirmerSuppressionMarque').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" onclick="PF('confirmerSuppressionMarque').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:errorDialog widgetVar="errorOperationMarque" title="ERREUR" 
+                            msg1="#{marqueMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                <p:commandButton process="@none" value="OK" style="width: 100px"
+                                 onclick="PF('errorOperationMarque').hide()"  />
+            </div>
+        </ax:errorDialog>
+         <!--boite typeFiche-->   
+                    <ax:succesDialog widgetVar="succesOperationTypeFiche" title="Succes"
+                             msg1="#{typeFicheMBean.message}"  style=" background: green; color: #ffffff">
+                <div style="margin-top: 10px; text-align: center">
+                    <p:commandButton process="@none" value="OK" style="width: 100px"
+                                     onclick="PF('succesOperationTypeFiche').hide()"  />
+                </div>
+            </ax:succesDialog>
+
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer l'enregistrement?" widgetVar="confirmerEnregistrementTypeFiche" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldTypeFiche, .classTypeFiche)" actionListener="#{typeFicheMBean.enregistrer()}" 
+                                     onclick="PF('confirmerEnregistrementTypeFiche').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" update="@(.fieldTypeFiche, .classTypeFiche)" onclick="PF('confirmerEnregistrementTypeFiche').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer la suppression?" widgetVar="confirmerSuppressionTypeFiche" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldTypeFiche, .classTypeFiche)" actionListener="#{typeFicheMBean.supprimer()}" 
+                                     onclick="PF('confirmerSuppressionTypeFiche').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" update="@(.fieldTypeFiche, .classTypeFiche)"  onclick="PF('confirmerSuppressionTypeFiche').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            
+            <ax:errorDialog widgetVar="errorOperationTypeFiche" title="ERREUR" 
+                            msg1="#{typeFicheMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                <p:commandButton process="@none" value="OK" style="width: 100px"
+                                 onclick="PF('errorOperationTypeFiche').hide()"  />
+            </div>
+        </ax:errorDialog>
+         <!--boite panne-->  
+                    <ax:succesDialog widgetVar="succesOperationPanne" title="Succes"
+                             msg1="#{pannesMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                    <p:commandButton process="@none"  value="OK" style="width: 100px"
+                                 onclick="PF('succesOperationPanne').hide()"  />
+                </div>
+            </ax:succesDialog>
+            
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer l'enregistrement?" widgetVar="confirmerEnregistrementPanne" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldPanne, .classPanne)" actionListener="#{pannesMBean.enregistrer()}" 
+                                 onclick="PF('confirmerEnregistrementPanne').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" onclick="PF('confirmerEnregistrementPanne').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer la suppression?" widgetVar="confirmerSuppressionPanne" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldPanne, .classPanne)" actionListener="#{pannesMBean.supprimer()}" 
+                                 onclick="PF('confirmerSuppressionPanne').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" onclick="PF('confirmerSuppressionPanne').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:errorDialog widgetVar="errorOperationPanne" title="ERREUR" 
+                            msg1="#{pannesMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                <p:commandButton process="@none" value="OK" style="width: 100px"
+                                 onclick="PF('errorOperationPanne').hide()"  />
+            </div>
+        </ax:errorDialog>
+         <!--boite Type Vehicule-->  
+            <ax:succesDialog widgetVar="succesOperationTypeVehicule" title="Succes"
+                             msg1="#{typeVehiculeMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                    <p:commandButton process="@none" value="OK" style="width: 100px"
+                                     onclick="PF('succesOperationTypeVehicule').hide()"  />
+                </div>
+            </ax:succesDialog>
+
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer l'enregistrement?" widgetVar="confirmerEnregistrementTypeVehicule" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldenreg, .classTypeVeh)" actionListener="#{typeVehiculeMBean.enregistrer()}" 
+                                     onclick="PF('confirmerEnregistrementTypeVehicule').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" update="@(.fieldenreg, .classTypeVeh)" onclick="PF('confirmerEnregistrementTypeVehicule').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer la suppression?" widgetVar="confirmerSuppressionTypeVehicule" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldenreg, .classTypeVeh)" actionListener="#{typeVehiculeMBean.supprimer()}" 
+                                     onclick="PF('confirmerSuppressionTypeVehicule').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" onclick="PF('confirmerSuppressionTypeVehicule').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:errorDialog widgetVar="errorOperationTypeVehicule" title="ERREUR" 
+                            msg1="#{typeVehiculeMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                <p:commandButton process="@none" value="OK" style="width: 100px"
+                                 onclick="PF('errorOperationTypeVehicule').hide()"  />
+            </div>
+        </ax:errorDialog>
+            <!--boite typemission-->
+            <ax:succesDialog widgetVar="succesOperationTypeMission" title="Succes"
+                             msg1="#{typeMissionMBean.message}"  style=" background: green; color: #ffffff">
+                <div style="margin-top: 10px; text-align: center">
+                    <p:commandButton process="@none" value="OK" style="width: 100px"
+                                     onclick="PF('succesOperationTypeMission').hide()"  />
+                </div>
+            </ax:succesDialog>
+
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer l'enregistrement?" widgetVar="confirmerEnregistrementTypeMission" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldTypeMission, .classTypeMission)" actionListener="#{typeMissionMBean.enregistrer()}" 
+                                     onclick="PF('confirmerEnregistrementTypeMission').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" update="@(.fieldTypeMission, .classTypeMission)" onclick="PF('confirmerEnregistrementTypeMission').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer la suppression?" widgetVar="confirmerSuppressionTypeMission" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldTypeMission, .classTypeMission)" actionListener="#{typeMissionMBean.supprimer()}" 
+                                     onclick="PF('confirmerSuppressionTypeMission').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" onclick="PF('confirmerSuppressionTypeMission').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            
+            <ax:errorDialog widgetVar="errorOperationTypeMission" title="ERREUR" 
+                            msg1="#{typeMissionMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                <p:commandButton process="@none" value="OK" style="width: 100px"
+                                 onclick="PF('errorOperationTypeMission').hide()"  />
+            </div>
+        </ax:errorDialog>
+         
+         
+        </h:form>
+    </h:body>
+</html>

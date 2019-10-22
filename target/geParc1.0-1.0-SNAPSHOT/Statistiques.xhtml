@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ax="http://www.artp.tg/composant"
+      class="no-js" lang="">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Statistiques</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>  
+        <h:outputStylesheet name="./assets/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="./assets/css/plugins.css"/>
+        <h:outputStylesheet name="./assets/css/lato-webfont.css"/>
+        <h:outputStylesheet name="./assets/css/magnific-popup.css"/>
+        <!--Theme custom css -->
+        <h:outputStylesheet name="./assets/css/style.css"/>
+        <!--Theme Responsive css-->
+        <h:outputStylesheet name="./assets/css/responsive.css"/>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+
+        <script src="./assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </h:head>
+
+    <h:body>
+        <h:form id="statistique" styleClass="statistique" enctype="multipart/form-data">
+            <!-- EN TETE -->
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#"><img src="resources/assets/images/logoGesparc.png" alt="" /></a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+                        <ul class="nav navbar-nav navbar-right" id="nav" style="min-height: 100px;">
+                            <li style="display: #{geParcUtils.disPlay(permissionManagedBean.isActiveGeparcAccueil)}" ><a href="Menu.xhtml">Accueil</a></li>
+                            <li style="display: #{geParcUtils.disPlay(permissionManagedBean.isActiveGeparcParc)}"><a href="parametres.xhtml" style="width: 185px;" >Gestion du Parc </a></li>
+                            <!--<li><a href="Alertes.xhtml" style="margin-left: 30px; margin-right: 30px;" > &nbsp; Alertes <h:outputText value="#{alertesMBean.info2}" style="color: red"/> </a></li>-->
+                            <li style="display: #{geParcUtils.disPlay(permissionManagedBean.isActiveGeparcAlertes)}"><a href="Alertes.xhtml" style="margin-left: 30px; margin-right: 30px;" > &nbsp;<h:outputText value="ALERTES" /><h:outputText value="#{alertesMBean.info2}" style="color: red" /> </a></li>
+                            <li class="active" style="display: #{geParcUtils.disPlay(permissionManagedBean.isActiveGeparcStatistiques)}" ><a href="Statistiques.xhtml" style="margin-left: 55px; margin-right: 55px;" > Statistiques </a></li>
+                            <li style="display: #{geParcUtils.disPlay(permissionManagedBean.isActiveGeparcAdministration)}"><a href="Administration.xhtml" style="margin-left: 70px; margin-right: 70px;"> Administration</a></li>
+                            <li ><a style="margin-left: 220px;" > <center> <p:commandButton  icon="ui-icon-power"  action="#{logoutMBean.deconnexion()}"  ajax="false" /> </center> </a></li>
+                            <li ><center> <p:outputLabel value="#{loginMBean.info}" style="margin-left: 200px; margin-right: 250px; margin-top: 25px; color: white;" /> </center> </li>
+                            <li >      </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+            <!-- CORPS -->
+            <p:layout fullPage="true" styleClass="nav navbar-nav navbar-right" rendered="#{permissionManagedBean.isActiveGeparcStatistiques}" >
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="230"  >
+                     <p:fieldset id="fieldStatistique" styleClass="fieldStatistique">
+                            <div>
+                       
+                            </div>
+                           
+                            <center>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <h:panelGrid id="gridOperation1" columns="1" cellspacing="10" cellpadding="10">
+                                            <p:outputLabel for="annee" value="Année"/>
+                                            <p:selectOneListbox id="annee"   value="#{statistiqueMBean.annee}"  scrollHeight="50" label="Année"  filter="true"   converter="omnifaces.SelectItemsConverter" styleClass="annee" style="width:195px; height: 100px;">
+                                                <f:selectItems value="#{statistiqueMBean.listeAnnee}" var="an" itemLabel="#{an}" itemValue="#{an}"/>
+                                            </p:selectOneListbox>
+                                            <p:outputLabel for="mois" value="Mois"/>
+                                            <p:selectOneListbox id="mois"   value="#{statistiqueMBean.mois}"  scrollHeight="50" label="Mois" filter="true"   converter="omnifaces.SelectItemsConverter" styleClass="mois" style="width:195px; height: 100px;">
+                                                <f:selectItem itemLabel="Janvier" itemValue="01"/>
+                                                <f:selectItem itemLabel="Février" itemValue="02"/>
+                                                <f:selectItem itemLabel="Mars" itemValue="03"/>
+                                                <f:selectItem itemLabel="Avril" itemValue="04"/>
+                                                <f:selectItem itemLabel="Mai" itemValue="05"/>
+                                                <f:selectItem itemLabel="Juin" itemValue="06"/>
+                                                <f:selectItem itemLabel="Juillet" itemValue="07"/>
+                                                <f:selectItem itemLabel="Août" itemValue="08"/>
+                                                <f:selectItem itemLabel="Septembre" itemValue="09"/>
+                                                <f:selectItem itemLabel="Octobre" itemValue="10"/>
+                                                <f:selectItem itemLabel="Novembre" itemValue="11"/>
+                                                <f:selectItem itemLabel="Décembre" itemValue="12"/>
+                                                
+                                            </p:selectOneListbox>
+                                            <p:outputLabel for="vehiculeParc" value="Véhicule du parc"/>
+                                            <p:selectOneListbox id="vehiculeParc" requiredMessage="Choisissez un véhicule"  value="#{statistiqueMBean.vehicule}"  scrollHeight="180" label="Modèle" var="vp" filter="true"   converter="omnifaces.SelectItemsConverter" styleClass="vehiculeParc" style="width:195px; height: 210px;">
+                                                <f:selectItems value="#{statistiqueMBean.listeVehicule}" var="veh" itemLabel="#{veh.immatriculation}" itemValue="#{veh}"/>
+                                                <p:column>
+                                                    <h:outputText value="#{vp.immatriculation}" />
+                                                </p:column>
+                                            </p:selectOneListbox>
+                                            <p:message for="vehiculeParc" display="icon"/>
+                                             <p:commandButton  style="size: 100px; width: 195px; height: 50px" update="@(.fieldStatistique1)"  icon="ui-icon-plusthick" value="Etablir la statistique" actionListener="#{statistiqueMBean.createLineModels()}"/> 
+                                        </h:panelGrid> 
+                                    </td>
+                                    <td width="12%">
+                                        <br/>
+                                    </td>
+                                    <td>
+                                    <h:panelGrid id="gridOperation2" columns="1" cellspacing="10" cellpadding="10">
+                                       
+                                    </h:panelGrid>
+                                    </td>
+                                </tr>
+                            </table>
+                                </center>
+                            
+                            <div>
+                           
+                        </div>
+                        </p:fieldset>
+
+                </p:layoutUnit>
+
+
+                <p:layoutUnit position="center">
+                    <center>
+                        
+                        
+                        <p:fieldset id="fieldStatistique1" styleClass="fieldStatistique1" legend="#{statistiqueMBean.titre}">
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                            <p:chart type="line" model="#{statistiqueMBean.lineModel1}" style="height:400px;"/> 
+                        </p:fieldset>
+                        
+                        
+                        <p:fieldset id="fieldStatistique2" styleClass="fieldStatistique2" legend="RATIO DE CONSOMMATION">
+                           <p:chart type="pie" model="#{statistiqueMBean.pieModel2}" style="width:400px;height:300px" /> 
+                        </p:fieldset>
+                        
+                        
+                        
+                    </center>
+                    
+                </p:layoutUnit>
+            </p:layout>
+
+        </h:form>
+
+
+
+
+    </h:body>
+
+</html>
+

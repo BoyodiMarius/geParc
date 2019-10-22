@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ax="http://www.artp.tg/composant"
+      class="no-js" lang="">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Vehicule</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>  
+        <h:outputStylesheet name="./assets/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="./assets/css/plugins.css"/>
+        <h:outputStylesheet name="./assets/css/lato-webfont.css"/>
+        <h:outputStylesheet name="./assets/css/magnific-popup.css"/>
+        <!--Theme custom css -->
+        <h:outputStylesheet name="./assets/css/style.css"/>
+        <!--Theme Responsive css-->
+        <h:outputStylesheet name="./assets/css/responsive.css"/>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+
+        <script src="./assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </h:head>
+
+    <h:body>
+        <h:form id="vehicule" styleClass="vehicule" enctype="multipart/form-data" >
+            <!-- EN TETE -->
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#"><img src="resources/assets/images/logoGesparc.png" alt="" /></a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right" id="nav">
+                            <li><a href="Menu.xhtml">Home</a></li>
+                            <li><a href="Statistiques.xhtml">Statistiques</a></li>
+                            <li><a href="Alertes.xhtml"> &nbsp; Alertes</a></li>
+                            <li class="active"><a href="parametres.xhtml"> Administration</a></li>
+                            <li>  </li>
+                            <li> </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+            <!-- CORPS -->
+            <p:layout fullPage="true" styleClass="nav navbar-nav navbar-right" >
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="175"  >
+
+                    <p:growl autoUpdate="false" />
+                    <p:panelMenu style="width:300px">
+                        <p:submenu label="Véhicule" >
+                            <p:menuitem value="Modèle" url="Modele.xhtml" icon="ui-icon-circle-plus" />
+                            <p:menuitem value="Véhicule" url="Vehicules.xhtml" icon="ui-icon-star" />  
+                        </p:submenu>
+                        <p:submenu label="Opération ">
+                            <p:menuitem value="Affectation" url="Affectation.xhtml" icon="ui-icon-circle-plus" />
+                            <p:menuitem value="Fiche" url="Fiche.xhtml" icon="ui-icon-document" />
+                            <p:menuitem value="Charger carburant" url="ChargerCarburant.xhtml" icon="ui-icon-star" />
+                            <p:menuitem value="Garage" url="Garage.xhtml" icon="ui-icon-wrench" />
+                            <p:menuitem value="Réparation" url="Reparation.xhtml" icon="ui-icon-wrench" />
+                        </p:submenu>
+                        <p:submenu label="Gestion Global">
+                            <p:menuitem value="Paramètres" url="ParametresGenerale.xhtml" icon="ui-icon-gear" />
+                            <p:menuitem value="Missions" url="Mission.xhtml" icon="ui-icon-document" />
+                            <p:menuitem value="Chauffeur" url="Chauffeur.xhtml" icon="ui-icon-person" />
+                            <p:menuitem value="Utilisateur" url="Utilisateur.xhtml" icon="ui-icon-person" />
+                        </p:submenu>
+                    </p:panelMenu>
+
+                </p:layoutUnit>
+
+
+                <p:layoutUnit position="center" >
+                    <center>
+                    <p:fieldset legend="Vehicules" styleClass="fieldVehicule">
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <!--<h:panelGrid columns="3">-->
+                        <table>
+                            <tr>
+                                <td align="top">
+                                <h:panelGrid id="gridGarage" columns="3" cellspacing="10" cellpadding="10">
+                                    <p:outputLabel for="typeVehiculeModele" value="TypeVehicule :"/>
+                                        <h:panelGrid columns="2">
+                                            <p:selectOneMenu id="typeVehiculeModele" value="#{vehiculeMBean.typeVehicules}"   converter="omnifaces.SelectItemsConverter" styleClass="listetypevehicule"  style="width:175px">
+                                                <f:selectItem  itemLabel="Type de véhicule" itemValue=""/>
+                                                <f:selectItems value="#{vehiculeMBean.listeTypevehicule}" var="l" itemLabel="#{l.libelleTypeVehicule}" itemValue="#{l}"/>
+                                                <!--<p:ajax event="change" process="@this"/>-->
+                                            </p:selectOneMenu>
+                                        </h:panelGrid>
+                                        <p:message for="typeVehiculeModele" display="icon"/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel for="marqueModele" value="Marque :"/>
+                                        <h:panelGrid columns="2">
+                                            <p:selectOneMenu id="marqueModele" value="#{vehiculeMBean.marques}"  converter="omnifaces.SelectItemsConverter" styleClass="listemarque"  style="width:175px">
+                                                <f:selectItem  itemLabel="Marques" itemValue=""/>
+                                                <f:selectItems value="#{vehiculeMBean.listeMarque}" var="ls" itemLabel="#{ls.libelleMarque}" itemValue="#{ls}"/>
+                                                <p:ajax event="change" process="@this @(.listetypevehicule, .listemarque)"  update="@(.modele)" listener="#{vehiculeMBean.remplirListeModele()}"/>
+                                            </p:selectOneMenu>
+                                        </h:panelGrid>
+                                        <p:message for="marqueModele" display="icon"/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel for="modele" value="Modèle :"/>
+                                        <h:panelGrid columns="2">
+                                            <p:selectOneMenu id="modele" value="#{vehiculeMBean.idModele}"   converter="omnifaces.SelectItemsConverter" styleClass="modele" style="width:175px">
+                                                <f:selectItem  itemLabel="Modèles" itemValue=""/>
+                                                <f:selectItems value="#{vehiculeMBean.listeModeleFiltre}" var="modele" itemLabel="#{modele.designation}" itemValue="#{modele}"/>
+                                            </p:selectOneMenu>
+                                        </h:panelGrid>
+                                        <p:message for="modele" display="icon"/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel for="numeroChassis" value="N°de chassis :"/>
+                                        <p:inputText id="numeroChassis" style="background: #ffffff" styleClass="numeroChassis"  value="#{vehiculeMBean.numeroChassis}"  />
+                                        <p:message for="numeroChassis" display="icon"/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                </h:panelGrid>
+                                </td>
+                                <td width="5%">
+                                    <br/>
+                                </td>
+                                <td align="top">
+                                    <h:panelGrid id="gridGarage1" columns="3" cellspacing="10" cellpadding="10">
+                                        <p:outputLabel for="immatriculation" value="N° d'immatriculation :"/>
+                                        <p:inputText id="immatriculation" style="background: #ffffff" styleClass="immatriculation"  value="#{vehiculeMBean.immatriculation}"  />
+                                        <p:message for="immatriculation" display="icon"/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel for="couleur" value="Couleur :"/>
+                                        <p:inputText id="couleur" style="background: #ffffff" styleClass="couleur"  value="#{vehiculeMBean.couleur}"  />
+                                        <p:message for="couleur" display="icon"/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel for="paramAmortissement" value="Paramètre Amortissement :"/>
+                                        <p:inputText id="paramAmortissement" style="background: #ffffff" styleClass="paramAmortissement"  value="#{vehiculeMBean.paramAmortissement}"  />
+                                        <p:message for="paramAmortissement" display="icon"/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel value=""/>
+                                        <p:outputLabel for="kilometrageActuel" value="Kilométrage actuel :"/>
+                                        <p:inputText id="kilometrageActuel" style="background: #ffffff" styleClass="kilometrageActuel"  value="#{vehiculeMBean.kilometrageActuel}"  />
+                                        <p:message for="kilometrageActuel" display="icon"/>
+                                    </h:panelGrid>
+                                </td>
+                                <td width="5%">
+                                    <br/>
+                                </td>
+                                <td align="top">
+                                <h:panelGrid id="gridGarage2" columns="3" cellspacing="10" cellpadding="10">
+                                    <p:outputLabel  value="Image avant :"/>
+                                    <p:fileUpload id="fileIdImage1"  value="#{vehiculeMBean.image1}" mode="simple"  />
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel  value="Image Arrière :"/>
+                                    <p:fileUpload id="fileIdImage2"  value="#{vehiculeMBean.image2}" mode="simple"  />
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel  value="Image Droite :"/>
+                                    <p:fileUpload id="fileIdImage3"  value="#{vehiculeMBean.image3}" mode="simple"  />
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel  value="Image Gauche :"/>
+                                    <p:fileUpload id="fileIdImage4"  value="#{vehiculeMBean.image4}" mode="simple"  />
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel value=""/>
+                                    <p:outputLabel  value="Image intérieur :"/>
+                                    <p:fileUpload id="fileIdImage5"  value="#{vehiculeMBean.image5}" mode="simple"  />
+                                    <p:outputLabel value=""/>
+                                </h:panelGrid>
+                                </td>
+                                <td width="5%">
+                                    <br/>
+                                </td>
+                                <td width="10%">
+                                    <p:imageSwitch effect="fade" id="fadeEffect" >
+                                        <ui:repeat value="#{vehiculeMBean.imagesVisualiser}" var="image" id="fadeEffectImages"  >
+                                            <p:graphicImage name="/assets/images/imagesDesVehicules/#{image}" id="image"/>
+                                        </ui:repeat>
+                                    </p:imageSwitch>
+                                </td>
+                                </tr>
+                            </table>
+                    <!--</h:panelGrid>-->
+                            <h:panelGrid columns="6">
+                                <p:commandButton  style="margin-right: 8px; background: #4bcaff; color: white" ajax="false" action="#{vehiculeMBean.enregistrer()}" value="Valider" icon="ui-icon-disk" class="btn btn-primary btn-lg"/>
+                                <br/><br/>
+                                <p:commandButton  style="margin-right: 8px; background: #999; color: white" ajax="false" action="#{vehiculeMBean.remplirListeModele()}"  value="Annuler"  class="btn btn-primary btn-lg"/>
+                            </h:panelGrid>
+                    </p:fieldset>
+                     <br/>
+                        <br/>
+
+                        <p:dataTable var="f" value="#{vehiculeMBean.listeVehicule}" 
+                                     selection="#{vehiculeMBean.selectObject}" rowKey="#{f.idVehicule}"
+                                     emptyMessage="Aucun vehicule" selectionMode="single"
+                                     rows="3" scrollable="true"  paginator="true" paginatorPosition="top" 
+                                     styleClass="classVehicule">
+                            <p:ajax event="rowDblselect" update="@(.fieldVehicule)" listener="#{vehiculeMBean.rowSelect()}" />
+                            <f:facet name="header">
+                                <h:outputText value="LISTE DES VEHICULES"/>
+                            </f:facet>
+                            <p:column filterBy="#{f.idModele.idTypeVehicule.libelleTypeVehicule}" sortBy="#{f.idModele.idTypeVehicule.libelleTypeVehicule}" >
+                                <f:facet name="header"> <h:outputText value=" Type de vehicule"/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.idModele.idTypeVehicule.libelleTypeVehicule}"  ></h:outputText>
+                                </center>
+                            </p:column>
+                            <p:column filterBy="#{f.idModele.idMarque.libelleMarque}" sortBy="#{f.idModele.idMarque.libelleMarque}" >
+                                <f:facet name="header"> <h:outputText value=" Marque"/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.idModele.idMarque.libelleMarque}"></h:outputText>
+                                </center>
+                            </p:column>
+                            <p:column filterBy="#{f.idModele.designation}" sortBy="#{f.idModele.designation}" >
+                                <f:facet name="header"> <h:outputText value=" Modèle"/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.idModele.designation}"></h:outputText>
+                                </center>
+                            </p:column>
+                            <p:column filterBy="#{f.numeroChassis}" sortBy="#{f.numeroChassis}" >
+                                <f:facet name="header"> <h:outputText value=" N° de chassis "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.numeroChassis}"></h:outputText>
+                                </center>
+                            </p:column>
+                            <p:column filterBy="#{f.immatriculation}" sortBy="#{f.immatriculation}" >
+                                <f:facet name="header"> <h:outputText value="  N° d'immatriculation "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.immatriculation}"></h:outputText>
+                                </center>
+                            </p:column>
+                            <p:column filterBy="#{f.couleur}" sortBy="#{f.couleur}" >
+                                <f:facet name="header"> <h:outputText value=" Couleur "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.couleur}" ></h:outputText>
+                                </center>
+                            </p:column>
+                            <p:column filterBy="#{f.kilometrageActuel}" sortBy="#{f.kilometrageActuel}" >
+                                <f:facet name="header"> <h:outputText value=" Kilometrage Actuel "/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.kilometrageActuel}" ></h:outputText>
+                                </center>
+                            </p:column>
+                            <p:column filterBy="#{f.parametreAmortissement}" sortBy="#{f.parametreAmortissement}" >
+                                <f:facet name="header"> <h:outputText value=" Kilometrage Amortissement"/> </f:facet>
+                                <center>
+                                    <h:outputText value="#{f.parametreAmortissement}" ></h:outputText>
+                                </center>
+                            </p:column>
+                        </p:dataTable>    
+                    </center>
+                </p:layoutUnit>
+            </p:layout>
+            <ax:succesDialog widgetVar="succesOperationVehicule" title="Succes"
+                             msg1="#{vehiculeMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                    <p:commandButton process="@none"  value="OK" style="width: 100px"
+                                     onclick="PF('succesOperationVehicule').hide()"  />
+                </div>
+            </ax:succesDialog>
+
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer l'enregistrement?" widgetVar="confirmerEnregistrementVehicule" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldVehicule, .classVehicule)" actionListener="#{vehiculeMBean.enregistrer()}" 
+                                     onclick="PF('confirmerEnregistrementVehicule').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" update="@(.fieldVehicule, .classVehicule)" actionListener="#{vehiculeMBean.rafraichir()}"  onclick="PF('confirmerEnregistrementVehicule').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:confirmDialog title="Confirmation" msg1="Êtes-vous sûr(e) de vouloir effectuer la suppression?" widgetVar="confirmerSuppressionVehicule" >
+                <div style="margin-top: 10px; text-align: right">
+                    <p:commandButton value="Oui" update="@(.fieldVehicule, .classVehicule)" actionListener="#{vehiculeMBean.supprimer()}" 
+                                     onclick="PF('confirmerSuppressionVehicule').hide();" style="size: 90px;"/>
+                    <p:commandButton value="Non" update="@(.fieldVehicule, .classVehicule)" actionListener="#{vehiculeMBean.rafraichir()}" onclick="PF('confirmerSuppressionVehicule').hide();" style="margin-left: 5px;size: 90px;"/>
+                </div>
+            </ax:confirmDialog>
+            <ax:errorDialog widgetVar="errorOperationVehicule" title="ERREUR" 
+                            msg1="#{vehiculeMBean.message}" >
+                <div style="margin-top: 10px; text-align: center">
+                    <p:commandButton process="@none" value="OK" style="width: 100px"
+                                     onclick="PF('errorOperationVehicule').hide()"  />
+                </div>
+            </ax:errorDialog>
+            
+            <p:dialog widgetVar="visualiserDlg" width="500" height="300" closable="true" header="Les images du véhicule" draggable="true" id="visualiserDlg" modal="true">
+                <h:form enctype="multipart/form-data">
+                    <p:panel>
+                        <p:fieldset styleClass="fieldImage">
+                            <center>
+                                      <p:imageSwitch effect="fade" id="fadeEffect" >
+                                    <ui:repeat value="#{vehiculeMBean.imagesVisualiser}" var="image" id="fadeEffectImages"  >
+                                <p:graphicImage name="/assets/images/slide/#{image}" id="image"/>
+                            </ui:repeat>
+                        </p:imageSwitch>
+                    </center> 
+                        </p:fieldset>
+                    </p:panel>
+                    
+                </h:form>
+
+            </p:dialog>
+            
+        </h:form>
+    </h:body>
+
+</html>

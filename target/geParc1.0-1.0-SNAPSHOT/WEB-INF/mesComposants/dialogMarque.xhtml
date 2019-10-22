@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+    </head>
+    <ui:composition>
+
+        <p:dialog widgetVar="#{widgetVar}" styleClass="notifDialog"
+                  visible="false" closable="false" onShow="focusBt()"
+                  draggable="false" closeOnEscape="true" 
+                  resizable="fasle" modal="true" width="360" appendTo="#{appendTo}" dynamic="true" >
+
+            <f:facet name="header" >
+                <div class="dialogTitleSucces"  ><h:outputText value="#{title}" /></div>
+            </f:facet>
+
+            <p:outputPanel autoUpdate="true">
+                <div class="succesMsg" style=" color: green; font-size: 20px">
+                    <h:outputText value="#{msg1}" style="color: green; font-size: 20px"/> <br/>
+                    <h:outputText value="#{msg2}"  style="color: green; font-size: 20px"/> <br/>
+                    <h:outputText value="#{msg3}"  style="color: green; font-size: 20px"/> 
+
+                </div>
+            </p:outputPanel>
+
+
+            <div class="modal-footer">
+                <ui:insert />
+            </div>
+
+            <script type="text/javascript">
+
+                function focusBt() {
+
+                    $(".#{widgetVar}Focus").focus();
+
+                }
+
+            </script>
+
+        </p:dialog>
+
+    </ui:composition>
+</html>

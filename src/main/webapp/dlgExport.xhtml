@@ -1,0 +1,52 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ax="http://www.artp.tg/composant"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <p:dialog widgetVar="dialogueExport" closable="false" closeOnEscape="true" dynamic="false" modal="true"  header="Format du fichier" showEffect="fold" hideEffect="puff" appendTo="@(body)">
+
+        <h:form id="formulaireExpor">
+            <p:fieldset legend="Format">
+                <p:selectOneRadio id="format" value="#{globalExportManagedBean.formatDocument}" widgetVar="radioFormat">
+                    <f:selectItems value="#{globalExportManagedBean.listeDesFormat}" var="courant" itemLabel="#{courant}" itemValue="#{courant}"/>
+                </p:selectOneRadio>
+            </p:fieldset>
+            <div class="boutondiv">
+                <p:commandButton value="Exporter" widgetVar="btnExport" process="formulaireExpor" action="#{globalExportManagedBean.demandeImpression()}"
+                                 update="@(.newAfficherPdf)" onerror="afficherDlgExport()" oncomplete="PF('dialogueExport').hide()"/>
+                <p:commandButton value="Annuler" widgetVar="fermer" onclick="PF('dialogueExport').hide()" styleClass="fermerDlg" type="button"/>
+            </div>
+        </h:form>
+    </p:dialog>
+    <script type="text/javascript">
+        $(function() {
+
+            window.adresseReport = "http://" + window.location.host + "/geParc1.0/servlets/report/PDF";
+            PF('fermer').getJQ().click(function() {
+                PF('dialogueExport').hide();
+            });
+            PF('radioFormat').getJQ().on("change", function() {
+                var base = "http://" + window.location.host + "/geParc1.0/servlets/report/";
+                var sufix = PF('radioFormat').checkedRadio[0].parentNode.parentNode.
+                        nextSibling.firstElementChild.textContent;
+
+                window.adresseReport = base + sufix;
+            });
+        });
+
+        function afficherDlgExport() {
+            console.log("afficherDlgExport");
+            var typeFormat = PF('radioFormat').checkedRadio[0].parentNode.parentNode.
+                    nextSibling.firstElementChild.textContent;
+            if (typeFormat === "PDF") {
+                PF('dialogueAfficherPdf').show();
+            }
+            else {
+                window.open(window.adresseReport);
+            }
+        }
+
+    </script>
+</ui:composition>

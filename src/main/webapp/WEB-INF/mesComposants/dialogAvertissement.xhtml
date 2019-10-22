@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog widgetVar="#{widgetVar}" styleClass="notifDialog notifAvertis"
+                  visible="false" closable="false" 
+                  draggable="false" closeOnEscape="true" 
+                  resizable="fasle" modal="true" width="360" dynamic="true"  >
+
+            <f:facet name="header" >
+                <div class="dialogTitleAvertis"   ><h:outputText style="font-size: 14px !important" value="#{title}" /></div>
+            </f:facet>
+
+            <p:outputPanel autoUpdate="true">
+                <div class="avertissementMsg" >
+                    <h:outputText escape="false" value="#{msg1}" /> <br/>
+                    <h:outputText  value="#{msg2}" /> <br/>
+                    <h:outputText  value="#{msg3}" /> 
+
+                </div>
+            </p:outputPanel>
+
+
+            <div class="modal-footer" >
+                <ui:insert />
+            </div>
+
+            <script type="text/javascript">
+
+                function focusBt() {
+
+                    $(".#{widgetVar}Focus").focus();
+
+                }
+
+            </script>
+
+        </p:dialog>
+
+    </ui:composition>
+</html>

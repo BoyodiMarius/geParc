@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listeAssurance" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92a1e84a-c9dc-47aa-827c-3c97ccedaee5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="th" forecolor="#000000" backcolor="#CCCCCC" fill="Solid">
+		<box>
+			<pen lineWidth="0.5"/>
+			<topPen lineWidth="0.5"/>
+			<leftPen lineWidth="0.5"/>
+			<bottomPen lineWidth="0.5"/>
+			<rightPen lineWidth="0.5"/>
+		</box>
+	</style>
+	<subDataset name="dataset1" uuid="68563bc1-5bd1-4dfd-b798-75a91c5c3deb"/>
+	<parameter name="logo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["./logo.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="titre" class="java.lang.String"/>
+	<field name="immatriculation" class="java.lang.String"/>
+	<field name="dateLivraison" class="java.lang.String"/>
+	<field name="dateExpiration" class="java.lang.String"/>
+	<field name="joursRestants" class="java.lang.String"/>
+	<field name="etatAssurance" class="java.lang.String"/>
+	<group name="etatAssuranceGroup">
+		<groupExpression><![CDATA[$F{etatAssurance}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="0" width="555" height="20" uuid="bab654a9-1837-4be3-bb3c-d848214e5418"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<paragraph leftIndent="4" rightIndent="4"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{etatAssurance}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="50" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="100" height="50" uuid="848c2911-cd22-4aa3-b353-27f28a66bb8b"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="445" y="13" width="110" height="20" uuid="2519c722-6e56-422c-aac4-d1f918736dee"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="13" width="70" height="20" uuid="bc7072ba-1f79-43b6-86ae-c338dcb895f2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false"/>
+					<paragraph rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Situation au "]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="3" width="555" height="20" uuid="87c5d209-056b-4a52-8a70-4de4d961a715"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{titre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement style="th" x="0" y="0" width="155" height="20" uuid="59a01a8a-ec3d-41a1-bb07-512abeeddcf6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Immatriculation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="th" x="155" y="0" width="125" height="20" uuid="39d0e454-46dd-4a6a-9dfa-ef597b12c9e4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date délivraison]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="th" x="280" y="0" width="145" height="20" uuid="2e848a88-8f99-4232-9317-2c32e88718be"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date d'expiration]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="th" x="425" y="0" width="130" height="20" uuid="27752e7a-30bb-4baa-9f51-41fbd12a4e70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jours restants]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="155" height="20" uuid="a69f11f7-bd76-4351-bde4-77a8392aebe1"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{immatriculation}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="155" y="0" width="125" height="20" uuid="1a6a2513-0a7c-4eab-9390-64617e07433c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dateLivraison}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="280" y="0" width="145" height="20" uuid="60d4a705-2cc4-45da-839d-2b18b554cf54"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dateExpiration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="425" y="0" width="130" height="20" uuid="21080f2b-edb8-4979-adf9-07827271cce1"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{joursRestants}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="480" y="20" width="75" height="20" uuid="f4af12f5-0fc0-48b3-acd8-5cacf449cb85"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      class="no-js" lang="">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Chauffeur</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>  
+        <h:outputStylesheet name="./assets/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="./assets/css/plugins.css"/>
+        <h:outputStylesheet name="./assets/css/lato-webfont.css"/>
+        <h:outputStylesheet name="./assets/css/magnific-popup.css"/>
+        <!--Theme custom css -->
+        <h:outputStylesheet name="./assets/css/style.css"/>
+        <!--Theme Responsive css-->
+        <h:outputStylesheet name="./assets/css/responsive.css"/>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        
+        <script src="./assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </h:head>
+
+    <h:body>
+        <h:form id="chauffeur" styleClass="chauffeur">
+            <!-- EN TETE -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#"><img src="resources/assets/images/logoGesparc.png" alt="" /></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right" id="nav">
+                        <li><a href="Menu.xhtml">Home</a></li>
+                        <li><a href="Statistiques.xhtml">Statistiques</a></li>
+                        <li><a href="Alertes.xhtml"> &nbsp; Alertes</a></li>
+                        <li class="active"><a href="parametres.xhtml"> Administration</a></li>
+                        <li>  </li>
+                        <li> </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+            <!-- CORPS -->
+            <p:layout fullPage="true" styleClass="nav navbar-nav navbar-right" >
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="175"  >
+                    
+                  <p:growl autoUpdate="false" />
+                    <p:panelMenu style="width:300px">
+                        <p:submenu label="Véhicule" >
+                            <p:menuitem value="Modèle" url="Modele.xhtml" icon="ui-icon-circle-plus" />
+                            <p:menuitem value="Véhicule" url="Vehicules.xhtml" icon="ui-icon-star" />  
+                        </p:submenu>
+                        <p:submenu label="Opération ">
+                            <p:menuitem value="Affectation" url="Affectation.xhtml" icon="ui-icon-circle-plus" />
+                            <p:menuitem value="Fiche" url="Fiche.xhtml" icon="ui-icon-document" />
+                            <p:menuitem value="Charger carburant" url="ChargerCarburant.xhtml" icon="ui-icon-star" />
+                            <p:menuitem value="Garage" url="Garage.xhtml" icon="ui-icon-wrench" />
+                            <p:menuitem value="Réparation" url="Reparation.xhtml" icon="ui-icon-wrench" />
+                        </p:submenu>
+                        <p:submenu label="Gestion Global">
+                            <p:menuitem value="Paramètres" url="ParametresGenerale.xhtml" icon="ui-icon-gear" />
+                            <p:menuitem value="Missions" url="Mission.xhtml" icon="ui-icon-document" />
+                            <p:menuitem value="Chauffeur" url="Chauffeur.xhtml" icon="ui-icon-person" />
+                            <p:menuitem value="Utilisateur" url="Utilisateur.xhtml" icon="ui-icon-person" />
+                        </p:submenu>
+                    </p:panelMenu>
+                    
+                </p:layoutUnit>
+    
+    
+            <p:layoutUnit position="center" >
+                <center>
+                    
+                </center>      
+            </p:layoutUnit>
+        </p:layout>
+       </h:form>
+    </h:body>
+
+</html>

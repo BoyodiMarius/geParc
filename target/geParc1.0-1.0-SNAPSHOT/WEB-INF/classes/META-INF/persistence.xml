@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="geParc1.0_PU" transaction-type="JTA">
+    <jta-data-source>test</jta-data-source>
+    <class>tg.artp.geParc.entities.Droit</class>
+    <class>tg.artp.geParc.entities.DroitProfil</class>
+    <class>tg.artp.geParc.entities.Menu</class>
+    <class>tg.artp.geParc.entities.ModuleMenu</class>
+    <class>tg.artp.geParc.entities.Modules</class>
+    <class>tg.artp.geParc.entities.Poids</class>
+    <class>tg.artp.geParc.entities.Profil</class>
+    <class>tg.artp.geParc.entities.ProfilMenu</class>
+    <class>tg.artp.geParc.entities.ProfilUser</class>
+    <class>tg.artp.geParc.entities.Utilisateur</class>
+    <class>tg.artp.geParc.entities.UtilisateurDroit</class>
+    <class>tg.artp.geParc.entities.UtilisateurMenu</class>
+    <class>tg.artp.geParc.entities.UtilisateurModulePoids</class>
+    <class>tg.artp.geParc.entities.UtilisateurModuleProfil</class>
+    <class>tg.artp.geParc.entities.affectationChauffeurVehicule</class>
+    <class>tg.artp.geParc.entities.affectationVehiculeService</class>
+    <class>tg.artp.geParc.entities.affectations</class>
+    <class>tg.artp.geParc.entities.alertes</class>
+    <class>tg.artp.geParc.entities.chargerCarburant</class>
+    <class>tg.artp.geParc.entities.chauffeurs</class>
+    <class>tg.artp.geParc.entities.fiche</class>
+    <class>tg.artp.geParc.entities.garage</class>
+    <class>tg.artp.geParc.entities.marques</class>
+    <class>tg.artp.geParc.entities.missions</class>
+    <class>tg.artp.geParc.entities.modele</class>
+    <class>tg.artp.geParc.entities.pannes</class>
+    <class>tg.artp.geParc.entities.parametres</class>
+    <class>tg.artp.geParc.entities.reparationPanne</class>
+    <class>tg.artp.geParc.entities.reparations</class>
+    <class>tg.artp.geParc.entities.services</class>
+    <class>tg.artp.geParc.entities.typeCarburant</class>
+    <class>tg.artp.geParc.entities.typeFiche</class>
+    <class>tg.artp.geParc.entities.typeMission</class>
+    <class>tg.artp.geParc.entities.typeVehicules</class>
+    <class>tg.artp.geParc.entities.vehicules</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+    </properties>
+  </persistence-unit>
+</persistence>

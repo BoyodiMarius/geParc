@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listeVehicule" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="954b2ba7-77eb-4d55-8dab-919cc83f63c4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="th" forecolor="#000000" backcolor="#CCCCCC" fill="Solid">
+		<box>
+			<pen lineWidth="0.5"/>
+			<topPen lineWidth="0.5"/>
+			<leftPen lineWidth="0.5"/>
+			<bottomPen lineWidth="0.5"/>
+			<rightPen lineWidth="0.5"/>
+		</box>
+	</style>
+	<parameter name="logo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["./logo.png"]]></defaultValueExpression>
+	</parameter>
+	<field name="typeVehicule" class="java.lang.String"/>
+	<field name="marque" class="java.lang.String"/>
+	<field name="modele" class="java.lang.String"/>
+	<field name="numChassis" class="java.lang.String"/>
+	<field name="immatriculation" class="java.lang.String"/>
+	<field name="couleur" class="java.lang.String"/>
+	<field name="kilometrageActuel" class="java.lang.String"/>
+	<field name="kilometrageAmortissement" class="java.lang.String"/>
+	<field name="etatVehicule" class="java.lang.String"/>
+	<group name="groupeEtatVehicule">
+		<groupExpression><![CDATA[$F{etatVehicule}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="0" width="802" height="20" uuid="e04c314a-2c98-4045-b394-e850dba736b5"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+						<paragraph leftIndent="4" rightIndent="4"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{etatVehicule}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="69" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="126" height="69" uuid="5f642b30-03c5-465c-8525-ac89de6d841e"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="35" uuid="a4117860-2394-4b99-a662-7bbc40257311"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTE DES VEHICULES]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement style="th" x="0" y="0" width="104" height="39" backcolor="#CCCCCC" uuid="046655b7-6da9-4f29-a672-dc886fc85730"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Type de véhicule]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="th" x="104" y="0" width="88" height="39" backcolor="#CCCCCC" uuid="3f445d50-e810-4ebe-829d-150fbf016bca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marque]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="th" x="192" y="0" width="98" height="39" backcolor="#CCCCCC" uuid="3f97a155-e0f9-4c35-aa2e-bfc601b2567c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modèle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="th" x="290" y="0" width="116" height="39" backcolor="#CCCCCC" uuid="bbed8008-a494-4fce-ab20-35ea0e59201e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° Chassis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="th" x="406" y="0" width="152" height="39" backcolor="#CCCCCC" uuid="64046b8f-0e97-4cdd-9511-22c6769e8f61"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Immatriculation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="th" x="613" y="0" width="86" height="39" backcolor="#CCCCCC" uuid="1d0acd07-014f-4428-9035-e220b5b02aaa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kilométrage Actuel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="th" x="699" y="0" width="103" height="39" backcolor="#CCCCCC" uuid="dcdb8948-a804-42bc-ba65-d3abe0536b2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kilométrage d'amortissement]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="th" x="558" y="0" width="55" height="39" backcolor="#CCCCCC" uuid="45ff19d1-7958-45cf-ad0c-9e87b983d9e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Couleur]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="104" height="20" uuid="4f824927-b1a9-465f-b902-afb64415e3fd"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{typeVehicule}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="104" y="0" width="88" height="20" uuid="3dc74dd8-fe0a-4a64-b1f7-769421dd265b"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{marque}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="0" width="116" height="20" uuid="b75a9d56-f528-4551-9f48-a8d3da546abc"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numChassis}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="406" y="0" width="152" height="20" uuid="11afaf2d-edfc-4a1e-be10-90b5f41b39b6"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{immatriculation}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="558" y="0" width="55" height="20" uuid="6ea29ca5-add6-4921-ae3f-7165618cd3fb"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{couleur}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="613" y="0" width="86" height="20" uuid="ba07eaa1-ba53-4210-97f5-ad8f23c7b332"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kilometrageActuel}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="699" y="0" width="103" height="20" uuid="1f6fcb4b-f4a5-4b14-9722-de626ea0332c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kilometrageAmortissement}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="192" y="0" width="98" height="20" uuid="52914b91-4ded-43ae-8176-8473f9f879af"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="4" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{modele}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="10" width="55" height="20" uuid="72910b8f-8809-4ac1-b21e-ad31497729f4"/>
+				<textFieldExpression><![CDATA["Imprimé le "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="56" y="10" width="116" height="20" uuid="a412cd4a-fa45-4681-aab4-664ee4caeea2"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="727" y="10" width="75" height="20" uuid="54cc32b3-a63b-406f-9644-5efa557839b4"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
